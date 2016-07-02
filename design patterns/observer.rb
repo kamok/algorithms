@@ -1,25 +1,27 @@
-module Subject
-	def initialize
-		@observers = []
-	end
+# module Subject
+# 	def initialize
+# 		@observers = []
+# 	end
 
-	def add_observer(observer)
-		@observers << observer
-	end
+# 	def add_observer(observer)
+# 		@observers << observer
+# 	end
 
-	def delete_observer(observer)
-		@observers.delete(observer)
-	end
+# 	def delete_observer(observer)
+# 		@observers.delete(observer)
+# 	end
 
-	def notify_observers
-		@observers.each do |observer|
-			observer.update(self)
-		end
-	end
-end
+# 	def notify_observers
+# 		@observers.each do |observer|
+# 			observer.update(self)
+# 		end
+# 	end
+# end
+
+require 'observer'
 
 class Employee
-	include Subject
+	include Observable
 	attr_reader :name
 	attr_accessor :title, :salary
 
@@ -32,7 +34,8 @@ class Employee
 
 	def salary= (new_salary)
 		@salary = new_salary
-		notify_observers
+		changed
+		notify_observers(self)
 	end
 end
 
