@@ -33,9 +33,21 @@ class Employee
 	end
 
 	def salary= (new_salary)
+		old_salary = @salary
 		@salary = new_salary
-		changed
-		notify_observers(self)
+		if old_salary != new_salary
+			changed
+			notify_observers(self)
+		end
+	end
+
+	def title= (new_title)
+		old_title = @title
+		@title = new_title
+		if old_title != new_title
+			changed
+			notify_observers(self)
+		end
 	end
 end
 
@@ -60,3 +72,17 @@ ka.add_observer(payroll)
 ka.add_observer(tax_man)
 
 ka.salary="50,000"
+
+##Is this obsolete with before and after filters?
+
+class EmployeeObserver < ActiveRecord::Observer
+	def after_create(employee)
+		# New employee record created
+	end
+	def after_update(employee)
+		# Employee record updated
+	end
+	def after_destroy(employee)
+		# Employee record deleted
+	end
+end
