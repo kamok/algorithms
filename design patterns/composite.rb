@@ -32,16 +32,6 @@ class MixTask < Task
 	end
 end
 
-#composite class
-class MakeBatterTask < CompositeTask
-	def initialize
-		super('Make batter')
-		add_sub_task(AddDryIngredientsTask.new)
-		add_sub_task(AddLiquidsTask.new)
-		add_sub_task(MixTask.new)
-	end
-end
-
 #composite base class
 
 class CompositeTask < Task
@@ -62,5 +52,26 @@ class CompositeTask < Task
 		time = 0.0
 		@sub_tasks.each (|sub_task| time += task.get_time_required)
 		time
+	end
+end
+
+#composite class
+class MakeBatterTask < CompositeTask
+	def initialize
+		super('Make batter')
+		add_sub_task(AddDryIngredientsTask.new)
+		add_sub_task(AddLiquidsTask.new)
+		add_sub_task(MixTask.new)
+	end
+end
+
+class MakeCakeTask < CompositeTask
+	def initialize
+		super('Make cake')
+		add_sub_task( MakeBatterTask.new )
+		add_sub_task( FillPanTask.new )
+		add_sub_task( BakeTask.new )
+		add_sub_task( FrostTask.new )
+		add_sub_task( LickSpoonTask.new )
 	end
 end
