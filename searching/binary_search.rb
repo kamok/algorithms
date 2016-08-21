@@ -1,6 +1,7 @@
 a = [1,2,6,6,7,9,13,15,98,99,130,156,552,6516]
 
 def binary_search(array, value)
+
 	return array[0] if array[0] == value
 	return "Not found" if array.size == 1
 
@@ -25,5 +26,5 @@ def binary_search(array, value)
 	# end
 end
 
-p binary_search(a,23)
+p binary_search(a,156)
 	
