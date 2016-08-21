@@ -1,6 +1,8 @@
 # Implement an algorithm to determine if a string has all unique characters. 
 # What if you can not use additional data structures?
 
+# My solution is pretty much the same for both. 
+
 def unique_char2?(string)
   string.chars.each_with_index do |char, index|
     string.chars.each_with_index do |char2, index2|
@@ -25,3 +27,12 @@ def unique_char?(string)
 end
 
 p unique_char?("kneegrow")
+
+# I've seen this one... but it's probably not accceptable in an interview lol
+
+def unique_char_cheater?(string)
+  return false if string.split("").uniq.size != string.size
+  true
+end
+
+p unique_char_cheater?("kneegrow")
